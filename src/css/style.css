@@ -1,0 +1,27 @@
+.container-fluid{
+}
+
+a {
+    color: #222;
+}
+.nav-link > .fa {
+    margin-right: 10px;
+}
+.nav-link{
+    padding: 5px 5px;
+}
+.lightdarkgrey{
+    background: #efefef;
+}
+
+.sidebar{
+    padding-top: 20px;
+    background:#f8f9fa;
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-right: 1px solid #eee;
+}
