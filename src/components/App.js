@@ -13,6 +13,7 @@ import QuizPage from './Quiz/QuizPage';
 import AddQuizPage from './Quiz/AddQuizPage';
 import BarPage from './Bar/BarPage';
 import MusicPage from './Music/MusicPage';
+import {AddEventPage} from "./Bar/Event/AddEventPage";
 
 class App extends Component {
   render() {
@@ -29,6 +30,7 @@ class App extends Component {
                   <Route exact path="/" component={HomePage} />
                   <Route exact path="/quiz" component={QuizPage} />
                   <Route exact path="/quiz/new" component={AddQuizPage} />
+                    <Route exact path="/event/new" component={AddEventPage}/>
                   <Route exact path="/music" component={MusicPage} />
                   <Route exact path="/bar" component={BarPage} />
                 </Col>
