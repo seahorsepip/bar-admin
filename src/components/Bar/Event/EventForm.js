@@ -29,7 +29,7 @@ export default class EventForm extends Component {
     handleSubmit(event) {
         if (!this.state.name) console.log('what');
         event.preventDefault();
-        fetch('http://localhost:3000/api/events', this.getSettings()).then(res => this.setState({status: res.status}));
+        fetch('http://maatwerk.works/api/events', this.getSettings()).then(res => this.setState({status: res.status}));
     }
 
     getSettings() {
