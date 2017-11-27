@@ -2,24 +2,36 @@ import React, {Component} from 'react';
 import TextFieldGroup from '../../common/TextFieldGroup';
 
 export default class EventForm extends Component {
+    static defaultProps = {
+        name: '',
+        id: false,
+        description: '',
+        start: false,
+        end: false,
+        method: 'POST'
+    };
     constructor(props) {
         super(props);
 
         let currentDateTime = new Date().toISOString();
         currentDateTime = currentDateTime.substring(0, currentDateTime.length - 1);
-
         this.state = {
-            name: '',
-            description: '',
-            start: currentDateTime,
-            end: currentDateTime,
+            name: this.props.name,
+            description: this.props.description,
+            start: this.props.start ? this.getCompatibleDate(this.props.start) : currentDateTime,
+            end: this.props.end ? this.getCompatibleDate(this.props.end) : currentDateTime,
             status: '',
-            token: '5a4272e8b66101c3421a98536d0faadc8fc8e3ce'
+            token: '45feb57ce42182121f336647b89701ced9da43aa'
         }; //when there is a login of sorts, it can prolly rerouted to a local session. or simply keep using tokens
         //no shits were given that day!
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    getCompatibleDate(date) {
+        let d = new Date(date).toISOString();
+        return d.substring(0, d.length - 1);
     }
 
     handleChange(event) {
@@ -29,12 +41,15 @@ export default class EventForm extends Component {
     handleSubmit(event) {
         if (!this.state.name) console.log('what');
         event.preventDefault();
-        fetch('http://localhost:3000/api/events', this.getSettings()).then(res => this.setState({status: res.status}));
+        console.log(this.props.id);
+        let url = 'http://localhost:3000/api/events';
+        if (this.props.id) url += '/' + this.props.id;
+        fetch(url, this.getSettings()).then(res => this.setState({status: res.status}));
     }
 
     getSettings() {
         return {
-            method: "POST",
+            method: this.props.method,
             headers: this.getHeaders(),
             body: this.getEncodedBody()
         };
