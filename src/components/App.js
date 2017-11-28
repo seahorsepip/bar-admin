@@ -13,6 +13,8 @@ import QuizPage from './Quiz/QuizPage';
 import AddQuizPage from './Quiz/AddQuizPage';
 import BarPage from './Bar/BarPage';
 import MusicPage from './Music/MusicPage';
+import QuestionPage from './Quiz/Question/QuestionPage';
+
 
 class App extends Component {
   render() {
@@ -28,7 +30,9 @@ class App extends Component {
                 <Col sm="9" md="10" xl="11" className="ml-sm-auto p-4">
                   <Route exact path="/" component={HomePage} />
                   <Route exact path="/quiz" component={QuizPage} />
+                  <Route exact path="/quiz/:id" component={QuestionPage} />
                   <Route exact path="/quiz/new" component={AddQuizPage} />
+                  <Route exact path="/quiz/edit/:id" component={AddQuizPage} />
                   <Route exact path="/music" component={MusicPage} />
                   <Route exact path="/bar" component={BarPage} />
                 </Col>
