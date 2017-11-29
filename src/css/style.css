@@ -25,3 +25,10 @@ a {
     overflow-y: auto;
     border-right: 1px solid #eee;
 }
+
+.card-title-bg{
+    background: rgba(0, 0, 0, 0.3);
+    margin: -1.25rem!important;
+    padding: 1.25rem;
+
+}
