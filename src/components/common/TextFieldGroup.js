@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { FormGroup,FormText, Label, Input, FormFeedback, InputGroup, InputGroupAddon } from 'reactstrap';
 import { Link } from "react-router-dom";
 
+// todo:: maybe add https://availity.github.io/availity-reactstrap-validation/ ?
+// todo:: toggles, maybe...
 const TextFieldGroup = ({field, value, isDisabled, label, error, type, onChange, onBlur, text, addon, textLink}) => {
 
     let formtext = null;
