@@ -15,6 +15,7 @@ import BarPage from './Bar/BarPage';
 import MusicPage from './Music/MusicPage';
 import {AddEventPage} from "./Bar/Event/AddEventPage";
 import {EditEventPage} from "./Bar/Event/EditEventPage";
+import AddMusicPage from "./Music/AddMusicPage";
 
 class App extends Component {
   render() {
@@ -34,6 +35,7 @@ class App extends Component {
                     <Route exact path="/event/new" component={AddEventPage}/>
                     <Route exact path="/event/edit/:eventId/" component={EditEventPage}/>
                   <Route exact path="/music" component={MusicPage} />
+                    <Route exact path="/music/new" component={AddMusicPage}/>
                   <Route exact path="/bar" component={BarPage} />
                 </Col>
               </Row>
