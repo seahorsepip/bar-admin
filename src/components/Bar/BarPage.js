@@ -7,6 +7,7 @@ import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
 class BarPage extends Component {
     constructor() {
         super();
+
         this.state = {
             barList: null
         };
@@ -16,17 +17,16 @@ class BarPage extends Component {
 
     render() {
         const { barList } = this.state;
-        //console.log(barList);
+        console.log(this.state.barList);
+
         if (barList !== null)
         return (
             <div>
                 <h1>Bar Management</h1>
                 <Row>
                     {
-                        barList !== null ? barList.map(bar =>{
-                            console.log(bar.photos);
-                                <BarCard name={ bar.name } />
-                            }
+                        barList !== null ? barList.map((item, index)=>
+                            <BarCard key={ index } name={ item.name } image={ item.photos['profile_image'] } />
                         ):(
                             <p> Loading... </p>
                         )
@@ -64,7 +64,7 @@ class BarCard extends Component {
         return (
             <Col sm="3">
                 <Card inverse>
-                    <CardImg width="100%" src='' />
+                    <CardImg width="100%" src={ this.props.image } />
                     <CardImgOverlay>
                         <CardTitle className="card-title-bg">{ this.props.name }</CardTitle>
                     </CardImgOverlay>
