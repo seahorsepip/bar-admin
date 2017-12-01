@@ -4,7 +4,7 @@ import BarForm from './BarForm';
 import { Badge } from 'reactstrap';
 
 class AddBarPage extends Component {
-    testVar = this.fetchBars();
+    testVar = this.fetchAllBars();
 
 
     render() {

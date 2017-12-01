@@ -2,7 +2,7 @@
 // import axios from 'axios';
 //
 // class BarListComponent extends Component {
-//     public fetchBars() {
+//     public fetchAllBars() {
 //         axios.get('http://localhost:3000/api/bars')
 //             .then(function (response) {
 //                 if (response.status == 200) {

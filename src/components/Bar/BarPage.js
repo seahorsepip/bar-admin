@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
-import axios from 'axios';
 import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
+import { fetchAllBars } from './BarUtils';
 
 class BarPage extends Component {
     constructor() {
@@ -11,15 +11,21 @@ class BarPage extends Component {
         this.state = {
             barList: null
         };
-        this.fetchBars.bind(this);
-        this.fetchBars();
     }
+
+    componentDidMount(){
+        fetchAllBars()
+            .then(response => {
+                this.setState({ barList: response.data });
+            })
+    }
+
 
     render() {
         const { barList } = this.state;
         console.log(this.state.barList);
 
-        if (barList !== null)
+        if (barList)
         return (
             <div>
                 <h1>Bar Management</h1>
@@ -39,23 +45,6 @@ class BarPage extends Component {
             </div>
         );
         return <p> Loading... </p>
-    }
-
-    fetchBars() {
-        axios.get('http://localhost:3000/api/bars')
-            .then(function (response) {
-                if (response.status == 200) {
-                    this.setState({ barList: response.data });
-                } else {
-                    return false;
-                }
-            }.bind(this))
-            .catch(function (response) {
-                if (response.status !== 200) {
-                    //No OK
-                    return false;
-                }
-            })
     }
 }
 
