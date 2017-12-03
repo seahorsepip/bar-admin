@@ -2,28 +2,25 @@ import React, { Component } from 'react';
 import TextFieldGroup from '../common/TextFieldGroup';
 
 class BarForm extends Component {
-    constructor(props){
-        super(props);
-
-        this.state = {
-            name: '',
-            description: '',
-            address: '',
-            city: '',
-            zipcode: '',
-            profile_picture: null,
-            images: null,
-            token: ''};
+    constructor(){
+        super();
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(event) {
-        this.setState({[event.target.name]: event.target.value});
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
     }
 
-    handleSubmit(event){
+    handleSubmit(event) {
+        //TODO Fix form handling
 
     }
 

@@ -32,7 +32,7 @@ class BarPage extends Component {
                 <Row>
                     {
                         barList !== null ? barList.map((item, index)=>
-                            <BarCard key={ index } name={ item.name } image={ item.photos['profile_image'] } />
+                            <BarCard key={ index } id={ item.id } name={ item.name } image={ item.photos['profile_image'] } />
                         ):(
                             <p> Loading... </p>
                         )
@@ -49,10 +49,15 @@ class BarPage extends Component {
 }
 
 class BarCard extends Component {
+
+    handleCardClick = (e, id) => {
+        window.location.href= "/bar/new/" + id;
+    };
+
     render() {
         return (
             <Col sm="3">
-                <Card inverse>
+                <Card inverse onClick={ ((e) => this.handleCardClick(e, this.props.id)) }  className="bar-card">
                     <CardImg width="100%" src={ this.props.image } />
                     <CardImgOverlay>
                         <CardTitle className="card-title-bg">{ this.props.name }</CardTitle>
