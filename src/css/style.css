@@ -25,3 +25,7 @@ a {
     overflow-y: auto;
     border-right: 1px solid #eee;
 }
+
+.dz-progress {
+    display: none !important;
+}
