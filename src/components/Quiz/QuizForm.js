@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import TextFieldGroup from '../common/TextFieldGroup';
+import PropTypes from 'prop-types';
 
 class QuizForm extends Component {
+
     constructor(props){
         super(props);
 
@@ -10,7 +12,8 @@ class QuizForm extends Component {
             description: '',
             category: '',
             image: null,
-            token: ''};
+            token: '',
+            id: props.id};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,12 +24,42 @@ class QuizForm extends Component {
     }
 
     handleSubmit(event){
+        event.preventDefault();
 
+        let form = new FormData();
+        form.append('title', this.state.title);
+        form.append('description', this.state.description);
+        form.append('category', this.state.category);
+        form.append('image', this.state.image);
+
+        console.log(form);
+
+        if(this.state.id == undefined){
+            fetch('http://localhost:3000/api/quizzes/', {
+                method: 'POST',
+                body: form
+            })
+                .then((result) => result.json())
+                .then((json) => console.log(json))
+                .catch((error) => console.log(error));
+        }else{
+            console.log('test');
+            form.append('quizId', this.state.id)
+            fetch('http://localhost:3000/api/quizzes/' + this.state.id, {
+                method: 'PUT',
+                body: form
+            })
+                .then((result) => result.json())
+                .then((json) => console.log(json))
+                .catch((error) => console.log(error));
+        }
+        this.context.router.history.push('/quiz/')
     }
+
 
     render() {
         return (
-            <form className="form-horizontal" onSubmit={this.handleSubmit}>
+             <form className="form-horizontal" onSubmit={this.handleSubmit}>
                 <TextFieldGroup
                     field="title"
                     value={this.state.title}
@@ -63,5 +96,9 @@ class QuizForm extends Component {
         );
     }
 }
+
+QuizForm.contextTypes = {
+    router: PropTypes.object.isRequired
+};
 
 export default QuizForm;

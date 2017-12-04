@@ -5,11 +5,15 @@ import { ConnectedRouter } from 'react-router-redux'
 import store, { history } from './store'
 import App from './components/App'
 
-//css
-import 'bootstrap/dist/css/bootstrap.css';
-import './css/style.css'
+//import 'dropzone/dist/min/dropzone.min.js';
 
-const target = document.querySelector('#root')
+//css
+import 'react-dropzone-component/styles/filepicker.css';
+import 'dropzone/dist/min/dropzone.min.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import './css/style.css';
+
+const target = document.querySelector('#root');
 
 render(
   <Provider store={store}>

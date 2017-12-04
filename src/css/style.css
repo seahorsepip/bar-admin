@@ -43,3 +43,7 @@ a {
     padding: 5px;
     width: 150px;
 }
+
+.dz-progress {
+    display: none !important;
+}
