@@ -33,6 +33,7 @@ class App extends Component {
                   <Route exact path="/quiz/:id" component={QuestionPage} />
                   <Route exact path="/quiz/new" component={AddQuizPage} />
                   <Route exact path="/quiz/edit/:id" component={AddQuizPage} />
+                  <Route exact path="/quiz/play/:id" component={"TODO"}/>
                   <Route exact path="/music" component={MusicPage} />
                   <Route exact path="/bar" component={BarPage} />
                 </Col>

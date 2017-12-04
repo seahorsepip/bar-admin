@@ -2,13 +2,22 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 
+
 class QuestionList extends Component {
     constructor(props) {
         super(props);
 
+        this.onAfterSaveCell = this.onAfterSaveCell.bind(this);
+        this.onAfterInsertRow = this.onAfterInsertRow.bind(this);
+
         this.state= {
-            items:[],
-            id: props.id};
+            items:[]};
+
+        this.options  = {
+            cellEdit: this.cellEditProp,
+            afterDeleteRow: this.onAfterDeleteRow,
+            afterInsertRow: this.onAfterInsertRow
+        };
 
         this.cellEditProp = {
             mode: 'click',
@@ -16,12 +25,17 @@ class QuestionList extends Component {
             afterSaveCell: this.onAfterSaveCell
         };
 
-        this.onAfterSaveCell = this.onAfterSaveCell.bind(this);
+        this.selectRowProp = {
+            mode: 'checkbox'
+        };
+
+
 
     }
 
+    //Get initial data
     componentDidMount(){
-        fetch("http://localhost:3000/api/questions/" + this.state.id)
+        fetch("http://localhost:3000/api/questions/" + this.props.id)
             .then(res => {
                 console.log(res);
                 res.json().then((data) => {
@@ -34,57 +48,86 @@ class QuestionList extends Component {
             });
     }
 
-    onAfterSaveCell(row, cellName, cellValue) {
+
+
+    //Insert a new row with values
+    onAfterInsertRow(row){
 
         let form = new FormData();
-        console.log(row);
-
-        form.append('questionId',row["id"]);
         form.append('text', row["text"]);
         form.append('category', row["category"]);
-        //form.append('image', row["media"]);
+        form.append('image', row["media"]);
         form.append('answer', row["answer"]);
         form.append('duration', row["duration"]);
-        console.log(form)
+        form.append('quizId', this.props.id);
 
-        fetch("http://localhost:3000/api/questions/" + row.id, {
-            method: 'PUT',
+        fetch("http://localhost:3000/api/questions/" + this.props.id, {
+            method: 'POST',
             body: form,
+        })
+            .then(result => result.json())
+            .then(json => {
+                console.log(json)
+                this.state.items.map(question => {
+                    if(question.id === row.id) question.id = json.id;
+                });
+                this.setState(this.state);
+            })
+            .catch((error) => console.log(error));
 
+
+    };
+
+    //Delete row from database
+    onAfterDeleteRow(row) {
+        fetch("http://localhost:3000/api/questions/" + row, {
+            method: 'DELETE'
         })
             .then((result) => result.json())
             .then((json) => console.log(json))
             .catch((error) => console.log(error));
-        console.log(row);
     }
+
+    //Update row in database
+    onAfterSaveCell(row) {
+        let form = new FormData();
+
+        form.append('questionId',row["id"]);
+        form.append('text', row["text"]);
+        form.append('category', row["category"]);
+        form.append('image', row["media"]);
+        form.append('answer', row["answer"]);
+        form.append('duration', row["duration"]);
+        form.append('quizId', this.props.id);
+
+
+        fetch("http://localhost:3000/api/questions/" + row.id, {
+            method: 'PUT',
+            body: form,
+        })
+            .then((result) => result.json())
+            .then((json) => console.log(json))
+            .catch((error) => console.log(error));
+    };
+
 
     render() {
         return (
             <div>
-                <BootstrapTable data={this.state.items} keyField="id" search keyBoardNav cellEdit={ this.cellEditProp }>
-                    <TableHeaderColumn dataField="id" hidden={true}>Id</TableHeaderColumn>
+                <BootstrapTable data={this.state.items} selectRow={this.selectRowProp}  cellEdit={this.cellEditProp} deleteRow = {true} insertRow={true} options={this.options} search keyBoardNav>
+                    <TableHeaderColumn dataField="id" hidden={true} isKey={true} autoValue={true}>Text</TableHeaderColumn>
                     <TableHeaderColumn dataField="text">Text</TableHeaderColumn>
                     <TableHeaderColumn dataField="category">Category</TableHeaderColumn>
                     <TableHeaderColumn dataField="answer">Answer</TableHeaderColumn>
                     <TableHeaderColumn dataField="duration">Duration</TableHeaderColumn>
                 </BootstrapTable>
-
+                <Link className="btn btn-default btn-group-lg" to={'/quiz/play/' + this.state.id}>
+                    <span className="fa fa-cloud-upload"></span> Play!
+                </Link>
             </div>
         );
     }
 }
 
-/*
-                <div className="list-group">
-                    {this.state.items.length ? this.state.items.map(item =>
-                        <div>
-                            <Link to={"/quiz/" + item.id} className="list-group-item" key={item.id}>
-                                <h4 className="list-group-item-heading">{item.title}</h4>
-                                <p className="list-group-item-text">{item.description}</p>
-                            </Link>
-
-                            <Link to={"quiz/edit/" + item.id}> Edit quiz </Link>
-                        </div>): <p> Loading... </p>}
-                </div>*/
 
 export default QuestionList;

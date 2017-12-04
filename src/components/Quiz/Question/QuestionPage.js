@@ -11,9 +11,6 @@ class QuizPage extends Component {
             <div>
                 <div>
                     <h1 className="d-inline-block align-middle">Pubquiz questions</h1>
-                    <Link to="/question/new" className="btn btn-dark ml-3 d-inline-block">
-                        <span className="glyphicon glyphicon-th-list"></span> Add new question
-                    </Link>
                 </div>
                 <QuestionList id={this.props.match.params.id}/>
             </div>
