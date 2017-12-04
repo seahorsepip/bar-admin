@@ -5,6 +5,7 @@ import { Route, Link } from 'react-router-dom'
 // Components
 import NavigationBar from './common/NavigationBar';
 import SideNavigationBar from './common/SideNavigationBar';
+import AddBarPage from './Bar/AddBarPage';
 
 
 // Pages
@@ -17,7 +18,6 @@ import QuestionPage from './Quiz/Question/QuestionPage';
 import AddEventPage from "./Bar/Event/AddEventPage";
 import EditEventPage from "./Bar/Event/EditEventPage";
 import AddMusicPage from "./Music/AddMusicPage";
-
 
 class App extends Component {
   render() {
@@ -42,6 +42,8 @@ class App extends Component {
                   <Route exact path="/music" component={MusicPage} />
                   <Route exact path="/music/new" component={AddMusicPage}/>
                   <Route exact path="/bar" component={BarPage} />
+                  <Route exact path="/bar/new/:id" component={AddBarPage} />
+                  <Route exact path="/bar/events/new" component={AddEventsPage} />
                 </Col>
               </Row>
             </main>

@@ -26,6 +26,24 @@ a {
     border-right: 1px solid #eee;
 }
 
+.card-title-bg{
+    background: rgba(0, 0, 0, 0.3);
+    margin: -1.25rem!important;
+    padding: 1.25rem;
+
+}
+
+.bar-card{
+    cursor:pointer;
+}
+
+.imageList {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
 .dz-progress {
     display: none !important;
 }
