@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
 import { fetchAllBars } from './BarUtils';
@@ -25,6 +25,7 @@ class BarPage extends Component {
         const { barList } = this.state;
         console.log(this.state.barList);
 
+        //TODO: Fix rows if more than 4 bars
         if (barList)
         return (
             <div>
@@ -32,9 +33,9 @@ class BarPage extends Component {
                 <Row>
                     {
                         barList !== null ? barList.map((item, index)=>
-                            <BarCard key={ index } id={ item.id } name={ item.name } image={ item.photos['profile_image'] } />
+                        <BarCard key={ index } id={ item.id } name={ item.name } image={ item.photos['profile_image'] } />
                         ):(
-                            <p> Loading... </p>
+                        <p> Loading... </p>
                         )
                     }
                 </Row>

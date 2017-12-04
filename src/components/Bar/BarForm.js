@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TextFieldGroup from '../common/TextFieldGroup';
+import { ucFirst } from "./BarUtils";
 
 class BarForm extends Component {
     constructor(){
@@ -21,7 +22,6 @@ class BarForm extends Component {
 
     handleSubmit(event) {
         //TODO Fix form handling
-
     }
 
     render() {
@@ -29,50 +29,59 @@ class BarForm extends Component {
             <form className="form-horizontal" onSubmit={this.handleSubmit}>
                 <TextFieldGroup
                     field="name"
-                    value={this.state.title}
+                    value={this.props.name}
                     label="Name"
                     placeholder="Name"
                     addon="fa fa-header"
                     onChange={this.handleChange}/>
                 <TextFieldGroup
                     field="description"
-                    value={this.state.description}
+                    value={this.props.description}
                     label="Description"
                     placeholder="Description"
                     addon="fa fa-align-left"
                     onChange={this.handleChange}/>
                 <TextFieldGroup
                     field="address"
-                    value={this.state.category}
+                    value={this.props.address}
                     label="Address"
                     placeholder="Address"
                     addon="fa fa-home"
                     onChange={this.handleChange}/>
                 <TextFieldGroup
                     field="city"
-                    value={this.state.category}
+                    value={this.props.city}
                     label="City"
                     placeholder="City"
                     addon="fa fa-map-o"
                     onChange={this.handleChange}/>
                 <TextFieldGroup
                     field="zipcode"
-                    value={this.state.category}
+                    value={this.props.zipcode}
                     label="Zipcode"
                     placeholder="Zipcode"
                     addon="fa fa-university"
                     onChange={this.handleChange}/>
+                <img src={ this.props.profileimage } width={250} />
                 <TextFieldGroup
                     field="profile_image"
-                    value={this.state.image}
+                    value={this.props.profileimage}
                     label="Profile Image"
                     placeholder="Profile Image"
                     type="file"
                     addon="fa fa-image"
                     onChange={this.handleChange}/>
+                {
+                    console.log(this.props.images)}{
+                    this.props.images !== null ? this.props.images.map((item, index)=>
+                        <img src={ item } width={150} alt='' className="imageList" />
+                    ):(
+                    <p> Loading... </p>
+                    )
+                }
                 <TextFieldGroup
                     field="images"
-                    value={this.state.image}
+                    value=''
                     label="Images"
                     placeholder="Images"
                     type="file"

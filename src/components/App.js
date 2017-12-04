@@ -33,7 +33,7 @@ class App extends Component {
                   <Route exact path="/quiz/new" component={AddQuizPage} />
                   <Route exact path="/music" component={MusicPage} />
                   <Route exact path="/bar" component={BarPage} />
-                  <Route exact path="/bar/new" component={AddBarPage} />
+                  <Route exact path="/bar/new/:id" component={AddBarPage} />
                   <Route exact path="/bar/events/new" component={AddEventsPage} />
                 </Col>
               </Row>
