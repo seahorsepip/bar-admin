@@ -107,7 +107,7 @@ export default class MusicForm extends Component {
                     onChange={this.handleChange}/>
                 <Dropzone options ={['.mp3', '.mp4', '.flac']} acceptedFiles={'audio/mp3,video/mp4,audio/flac'} addedFile={this.addedFile.bind(this)} removedFile={this.removedFile.bind(this)}
                           init={this.initDropzone.bind(this)}/>
-                <button className="btn btn-primary btn-group-lg">
+                <button className="btn btn-dark ml-3 d-inline-block">
                     <span className="fa fa-upload"/> upload
                 </button>
             </form>
