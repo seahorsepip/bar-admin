@@ -34,7 +34,7 @@ class QuizForm extends Component {
 
         console.log(form);
 
-        if(this.state.id == undefined){
+        if(this.state.id === undefined){
             fetch('http://localhost:3000/api/quizzes/', {
                 method: 'POST',
                 body: form

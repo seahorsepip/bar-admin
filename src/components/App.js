@@ -38,6 +38,7 @@ class App extends Component {
                   <Route exact path="/event/new" component={AddEventPage}/>
                   <Route exact path="/event/edit/:eventId/" component={EditEventPage}/>
                   <Route exact path="/quiz/edit/:id" component={AddQuizPage} />
+                  <Route exact path="/quiz/play/:id" component={"TODO"}/>
                   <Route exact path="/music" component={MusicPage} />
                   <Route exact path="/music/new" component={AddMusicPage}/>
                   <Route exact path="/bar" component={BarPage} />
