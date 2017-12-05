@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TextFieldGroup from '../common/TextFieldGroup';
 import PropTypes from 'prop-types';
+import Dropzone from '../common/Dropzone';
 
 class QuizForm extends Component {
 
@@ -13,10 +14,15 @@ class QuizForm extends Component {
             category: '',
             image: null,
             token: '',
-            id: props.id};
+            id: props.id,
+            file: null};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    initDropzone(dropzone) {
+        this.myDropzone = dropzone
     }
 
     handleChange(event) {
@@ -31,6 +37,7 @@ class QuizForm extends Component {
         form.append('description', this.state.description);
         form.append('category', this.state.category);
         form.append('image', this.state.image);
+        form.append('file', this.state.file)
 
         console.log(form);
 
@@ -56,6 +63,16 @@ class QuizForm extends Component {
         this.context.router.history.push('/quiz/')
     }
 
+    addedFile(file) {
+        if (!file.type.match(/image/g)) return this.myDropzone.removeFile(file);
+        this.state.file = file;
+        console.log(this.state.file)
+    };
+
+    removedFile(file) {
+        this.setState({file: null});
+        console.log(this.state.file)
+    };
 
     render() {
         return (
@@ -81,14 +98,8 @@ class QuizForm extends Component {
                     placeholder="Category"
                     addon="fa fa-book"
                     onChange={this.handleChange}/>
-                <TextFieldGroup
-                    field="image"
-                    value={this.state.image}
-                    label="Image"
-                    placeholder="Image"
-                    type="file"
-                    addon="fa fa-image"
-                    onChange={this.handleChange}/>
+                 <Dropzone options={['.jpg', '.png']} acceptedFiles={'image/png, image/jpeg'} addedFile={this.addedFile.bind(this)} removedFile={this.removedFile.bind(this)}
+                           init={this.initDropzone.bind(this)}/>
                 <button className="btn btn-default btn-group-lg">
                     <span className="fa fa-cloud-upload"></span> Upload!
                 </button>

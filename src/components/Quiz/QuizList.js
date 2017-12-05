@@ -3,13 +3,15 @@ import { Link } from 'react-router-dom';
 import { CardColumns, Card, CardImg, CardBody, CardTitle, CardText} from 'reactstrap';
 
 
+
 class QuizList extends Component {
     constructor() {
         super();
         this.state={items:[]};
+        this.fetch();
     }
 
-    componentDidMount(){
+    fetch(){
         fetch("http://localhost:3000/api/quizzes/")
             .then(res => {
                 console.log(res);
@@ -23,6 +25,10 @@ class QuizList extends Component {
             });
     }
 
+    componentDidMount(){
+     this.fetch();
+    }
+
     render() {
         return (
             <div>
@@ -31,11 +37,11 @@ class QuizList extends Component {
                         <Card>
                             <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
                             <CardBody>
-                                <Link to={"quiz/" + item.id}>
+                                <Link to={"/quiz/id/" + item.id}>
                                     <CardTitle> {item.title} </CardTitle>
                                     <CardText> {item.description} </CardText>
                                 </Link>
-                                <Link to={"quiz/edit/" + item.id}  className="btn btn-outline-secondary d-inline-block">
+                                <Link to={"/quiz/edit/" + item.id}  className="btn btn-outline-secondary d-inline-block">
                                     <span className="glyphicon glyphicon-th-list"></span> Edit quiz
                                 </Link>
                             </CardBody>

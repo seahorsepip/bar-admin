@@ -9,14 +9,15 @@ export default class Dropzone extends Component {
         removedFile: PropTypes.func.isRequired,
         init: PropTypes.func
     };
+
     componentConfig = {
-        iconFiletypes: ['.mp3', '.mp4', '.flac'],
+        iconFiletypes: this.props.options,
         showFiletypeIcon: true,
         postUrl: 'if you get here, you are a faggot'
     };
     eventHandlers = {addedfile: this.props.addedFile, removedfile: this.props.removedFile, init: this.props.init};
 
-    djsConfig = {autoProcessQueue: false, addRemoveLinks: true, acceptedFiles: 'audio/mp3,video/mp4,audio/flac'};
+    djsConfig = {autoProcessQueue: false, addRemoveLinks: true, acceptedFiles: this.props.acceptedFiles};
 
     render() {
 
