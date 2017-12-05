@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
 import { fetchAllBars } from './BarUtils';
-import EventList from "./Event/EventList";
 
 class BarPage extends Component {
     constructor() {
@@ -53,7 +52,7 @@ class BarPage extends Component {
 class BarCard extends Component {
 
     handleCardClick = (e, id) => {
-        window.location.href= "/bar/new/" + id;
+        window.location.href= "/bar/new/" + id + "/edit";
     };
 
     render() {

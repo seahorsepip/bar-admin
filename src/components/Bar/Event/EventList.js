@@ -17,13 +17,13 @@ export default class EventList extends Component {
     }
 
     getEvents() {
-        fetch('http://localhost:3000/api/events')
+        fetch('http://maatwerk.works/api/events')
             .then(events => events.json())
             .then(events => this.setState({events}));
     }
 
     onDeleteClick(event) {
-        fetch('http://localhost:3000/api/events/' + event.id, {method: 'DELETE', headers: this.getHeaders()})
+        fetch('http://maatwerk.works/api/events' + event.id, {method: 'DELETE', headers: this.getHeaders()})
             .then(events => events.json())
             .then(json => this.getEvents());
     }
