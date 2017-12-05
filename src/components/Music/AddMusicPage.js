@@ -8,7 +8,7 @@ export default class AddMusicPage extends Component {
     render() {
         return (
             <div>
-                <Link to="/music" className="btn btn-sm btn-secondary">back</Link>
+                <Link to="/music/library" className="btn btn-sm btn-secondary">back</Link>
                 <hr/>
                 <h1>Add new Songs</h1>
                 <Row>

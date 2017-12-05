@@ -18,6 +18,11 @@ import QuestionPage from './Quiz/Question/QuestionPage';
 import {AddEventPage} from "./Bar/Event/AddEventPage";
 import {EditEventPage} from "./Bar/Event/EditEventPage";
 import AddMusicPage from "./Music/AddMusicPage";
+import Playlists from "./Music/Playlists";
+import Playlist from "./Music/Playlist";
+import Library from "./Music/Library";
+import AddPlaylist from "./Music/AddPlaylist";
+import EditPlaylist from "./Music/EditPlaylist";
 
 class App extends Component {
   render() {
@@ -43,6 +48,12 @@ class App extends Component {
                   <Route exact path="/music/new" component={AddMusicPage}/>
                   <Route exact path="/bar" component={BarPage} />
                   <Route exact path="/bar/new/:id" component={AddBarPage} />
+
+                  <Route exact path="/music/playlists" component={Playlists} />
+                  <Route exact path="/music/library" component={Library} />
+                  <Route exact path="/music/playlist/:id" component={Playlist} />
+                  <Route exact path="/music/addplaylist" component={AddPlaylist} />
+                  <Route exact path="/music/editplaylist/:id" component={EditPlaylist} />
                 </Col>
               </Row>
             </main>
