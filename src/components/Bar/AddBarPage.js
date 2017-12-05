@@ -12,12 +12,9 @@ class AddBarPage extends Component {
     }
 
     componentDidMount(){
-        fetchBarById(this.props.match.params.id) //TODO: Put ID here
+        fetchBarById(this.props.match.params.id)
             .then(response => {
                 this.setState({ bar: response.data });
-                console.log('State: ');
-                console.log(this.state);
-                console.log(this.state.bar.photos.images);
             })
     }
 

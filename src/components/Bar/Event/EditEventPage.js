@@ -20,7 +20,7 @@ export class EditEventPage extends Component {
 
     componentWillMount() {
         console.log('what');
-        fetch('http://localhost:3000/api/events/' + this.state.id)
+        fetch('http://maatwerk.works/api/events' + this.state.id)
             .then(event => event.json())
             .then(event => this.setState(event));
     }
