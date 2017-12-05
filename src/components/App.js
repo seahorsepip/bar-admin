@@ -5,7 +5,7 @@ import { Route, Link } from 'react-router-dom'
 // Components
 import NavigationBar from './common/NavigationBar';
 import SideNavigationBar from './common/SideNavigationBar';
-import AddBarPage from './Bar/AddBarPage';
+import EditBarPage from './Bar/EditBarPage';
 
 
 // Pages
@@ -42,7 +42,8 @@ class App extends Component {
                   <Route exact path="/music" component={MusicPage} />
                   <Route exact path="/music/new" component={AddMusicPage}/>
                   <Route exact path="/bar" component={BarPage} />
-                  <Route exact path="/bar/new/:id" component={AddBarPage} />
+                  <Route exact path="/bar/new/:id" component={EditBarPage} />
+                  <Route exact path="/bar/new/:id/:method" component={EditBarPage} />
                 </Col>
               </Row>
             </main>

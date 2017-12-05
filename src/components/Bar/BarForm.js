@@ -114,7 +114,6 @@ class BarForm extends Component {
                     addon="fa fa-university"
                     onChange={this.handleZipcodeChange}/>
 
-                <img src={ this.props.bar.photos['profile_image'] } className="barFormProfileImage"/>
                 <TextFieldGroup
                     field="profile_image"
                     value=""
@@ -123,13 +122,8 @@ class BarForm extends Component {
                     type="file"
                     addon="fa fa-image"
                     onChange={this.handleProfileimageChange}/>
-                {
-                    this.props.bar.photos.images !== null ? this.props.bar.photos.images.map((item, index)=>
-                        <img src={ item } width={150} alt='' className="imageList" />
-                    ):(
-                    <p> Loading... </p>
-                    )
-                }
+                <img src={ this.props.bar.photos['profile_image'] } className="barFormProfileImage"/>
+
                 <TextFieldGroup
                     field="images"
                     value=''
@@ -138,6 +132,15 @@ class BarForm extends Component {
                     type="file"
                     addon="fa fa-files-o"
                     onChange={this.handleImagesChange}/>
+
+                {
+                    this.props.bar.photos.images !== null ? this.props.bar.photos.images.map((item, index)=>
+                        <img src={ item } width={150} alt='' className="imageList" />
+                    ):(
+                        <p> Loading... </p>
+                    )
+                }
+                <br/><br/>
                 <button className="btn btn-default btn-group-lg">
                     <span className="fa fa-upload"></span> Save
                 </button>
