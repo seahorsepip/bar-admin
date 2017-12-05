@@ -44,6 +44,11 @@ class BarPage extends Component {
                 <Link to="/bar/new" className="btn btn-dark ml-3 d-inline-block">
                     <span className="glyphicon glyphicon-th-list"></span> Add new bar
                 </Link>
+                <h2 className="d-inline-block align-middle">Events</h2>
+                <Link to="/event/new" className="btn btn-dark ml-3 d-inline-block">
+                    <span className="glyphicon glyphicon-th-list"></span> Add new
+                </Link>
+                <EventList/>
             </div>
         );
         return <p> Loading... </p>

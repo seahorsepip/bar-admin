@@ -15,8 +15,8 @@ import AddQuizPage from './Quiz/AddQuizPage';
 import BarPage from './Bar/BarPage';
 import MusicPage from './Music/MusicPage';
 import QuestionPage from './Quiz/Question/QuestionPage';
-import AddEventPage from "./Bar/Event/AddEventPage";
-import EditEventPage from "./Bar/Event/EditEventPage";
+import {AddEventPage} from "./Bar/Event/AddEventPage";
+import {EditEventPage} from "./Bar/Event/EditEventPage";
 import AddMusicPage from "./Music/AddMusicPage";
 import Playlists from "./Music/Playlists";
 import Playlist from "./Music/Playlist";
@@ -48,6 +48,7 @@ class App extends Component {
                   <Route exact path="/music/new" component={AddMusicPage}/>
                   <Route exact path="/bar" component={BarPage} />
                   <Route exact path="/bar/new/:id" component={AddBarPage} />
+
                   <Route exact path="/music/playlists" component={Playlists} />
                   <Route exact path="/music/library" component={Library} />
                   <Route exact path="/music/playlist/:id" component={Playlist} />
