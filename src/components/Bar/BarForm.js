@@ -80,51 +80,51 @@ class BarForm extends Component {
             <form className="form-horizontal" onSubmit={this.handleSubmit}>
                 <TextFieldGroup
                     field="name"
-                    value={this.state.name}
+                    value={this.props.bar.name}
                     label="Name"
                     placeholder="Name"
                     addon="fa fa-header"
                     onChange={this.handleNameChange}/>
                 <TextFieldGroup
                     field="description"
-                    value={this.state.description}
+                    value={this.props.bar.description}
                     label="Description"
                     placeholder="Description"
                     addon="fa fa-align-left"
                     onChange={this.handleDescriptionChange}/>
                 <TextFieldGroup
                     field="address"
-                    value={this.state.address}
+                    value={this.props.bar.address}
                     label="Address"
                     placeholder="Address"
                     addon="fa fa-home"
                     onChange={this.handleAddressChange}/>
                 <TextFieldGroup
                     field="city"
-                    value={this.state.city}
+                    value={ucFirst(this.props.bar.city)}
                     label="City"
                     placeholder="City"
                     addon="fa fa-map-o"
                     onChange={this.handleCityChange}/>
                 <TextFieldGroup
                     field="zipcode"
-                    value={this.state.zipcode}
+                    value={this.props.bar.zipcode}
                     label="Zipcode"
                     placeholder="Zipcode"
                     addon="fa fa-university"
                     onChange={this.handleZipcodeChange}/>
-                <img src={ this.state.profileimage } width={250} />
+
+                <img src={ this.props.bar.photos['profile_image'] } className="barFormProfileImage"/>
                 <TextFieldGroup
                     field="profile_image"
-                    value={this.state.profileimage}
+                    value=""
                     label="Profile Image"
                     placeholder="Profile Image"
                     type="file"
                     addon="fa fa-image"
                     onChange={this.handleProfileimageChange}/>
                 {
-                    console.log(this.state.images)}{
-                    this.state.images !== null ? this.state.images.map((item, index)=>
+                    this.props.bar.photos.images !== null ? this.props.bar.photos.images.map((item, index)=>
                         <img src={ item } width={150} alt='' className="imageList" />
                     ):(
                     <p> Loading... </p>
