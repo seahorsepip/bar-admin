@@ -44,15 +44,15 @@ class App extends Component {
                   <SideNavigationBar />
                 </Col>
                 <Col sm="9" md="10" xl="11" className="ml-sm-auto p-4">
-                  {/Main/}
+                  {/*Main*/}
                   <Route exact path="/" component={HomePage} />
-                  {/Bar & Events/}
+                  {/*Bar & Events*/}
                   <Route exact path="/bar" component={BarPage} />
                   <Route exact path="/bar/new/:id" component={EditBarPage} />
                   <Route exact path="/bar/new/:id/:method" component={EditBarPage} />
                   <Route exact path="/event/new" component={AddEventPage}/>
                   <Route exact path="/event/edit/:eventId/" component={EditEventPage}/>
-                  {/Music/}
+                  {/*Music*/}
                   <Route exact path="/music" component={MusicPage} />
                   <Route exact path="/music/new" component={AddMusicPage}/>
                   <Route exact path="/music/playlists" component={Playlists} />
@@ -60,7 +60,7 @@ class App extends Component {
                   <Route exact path="/music/playlist/:id" component={Playlist} />
                   <Route exact path="/music/addplaylist" component={AddPlaylist} />
                   <Route exact path="/music/editplaylist/:id" component={EditPlaylist} />
-                  {/Quiz/}
+                  {/*Quiz*/}
                   <Route exact path="/quiz" component={QuizPage} />
                   <Route exact path="/quiz/:id" component={QuestionPage} />
                   <Route exact path="/quiz/new" component={AddQuizPage} />
