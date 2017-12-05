@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
 import { fetchAllBars } from './BarUtils';
-import EventList from "./Event/EventList";
 
 class BarPage extends Component {
     constructor() {
@@ -44,11 +43,6 @@ class BarPage extends Component {
                 <Link to="/bar/new" className="btn btn-dark ml-3 d-inline-block">
                     <span className="glyphicon glyphicon-th-list"></span> Add new bar
                 </Link>
-                <h2 className="d-inline-block align-middle">Events</h2>
-                <Link to="/event/new" className="btn btn-dark ml-3 d-inline-block">
-                    <span className="glyphicon glyphicon-th-list"></span> Add new
-                </Link>
-                <EventList/>
             </div>
         );
         return <p> Loading... </p>
@@ -58,7 +52,7 @@ class BarPage extends Component {
 class BarCard extends Component {
 
     handleCardClick = (e, id) => {
-        window.location.href= "/bar/new/" + id;
+        window.location.href= "/bar/new/" + id + "/edit";
     };
 
     render() {

@@ -6,7 +6,7 @@ class BarForm extends Component {
     constructor(){
         super();
 
-        this.setState({
+        this.state = {
             id: null,
             name: null,
             description: null,
@@ -15,11 +15,11 @@ class BarForm extends Component {
             city: null,
             profileImage: null,
             images: null
-        });
+        };
 
-        /*this.handleNameChange = this.handleNameChange.bind(this);
-        this.handleDescriptionChange = this.handleDescriptionChange(this);
-        this.handleAddressChange = this.handleAddressChange(this);
+        this.handleNameChange = this.handleNameChange.bind(this);
+        /*this.handleDescriptionChange = this.handleDescriptionChange(this);
+        /*this.handleAddressChange = this.handleAddressChange(this);
         this.handleZipcodeChange = this.handleZipcodeChange(this);
         this.handleCityChange = this.handleZipcodeChange(this);
         this.handleProfileImageChange = this.handleProfileImageChange(this);
@@ -29,28 +29,27 @@ class BarForm extends Component {
     }
 
     componentDidMount(){
-        if (this.props.bar){
-            this.setState({
-                id: this.props.id,
-                name: this.props.name,
-                description: this.props.description,
-                address: this.props.address,
-                zipcode: this.props.zipcode,
-                city: this.props.city,
-                profileImage: this.props.profileImage
-            });
-        }
+        this.setState({
+            id: this.props.bar.id,
+            name: this.props.bar.name,
+            description: this.props.bar.description,
+            address: this.props.bar.address,
+            zipcode: this.props.bar.zipcode,
+            city: this.props.bar.city,
+            profileImage: this.props.bar.profileImage
+        });
+        console.log('Comp DID mount!');
     }
 
-    /*handleNameChange(e) {
+    handleNameChange(e) {
         this.setState({name: e.target.value});
     }
 
-    handleDescriptionChange(e) {
+    /*handleDescriptionChange(e) {
         this.setState({description: e.target.value});
     }
 
-    handleAddressChange(e) {
+    /*handleAddressChange(e) {
         this.setState({address: e.target.value});
     }
 
@@ -76,11 +75,12 @@ class BarForm extends Component {
     }
 
     render() {
+        console.log(this.state);
         return (
             <form className="form-horizontal" onSubmit={this.handleSubmit}>
                 <TextFieldGroup
                     field="name"
-                    value={this.props.bar.name}
+                    value={this.state.name}
                     label="Name"
                     placeholder="Name"
                     addon="fa fa-header"
@@ -114,7 +114,6 @@ class BarForm extends Component {
                     addon="fa fa-university"
                     onChange={this.handleZipcodeChange}/>
 
-                <img src={ this.props.bar.photos['profile_image'] } className="barFormProfileImage"/>
                 <TextFieldGroup
                     field="profile_image"
                     value=""
@@ -123,13 +122,8 @@ class BarForm extends Component {
                     type="file"
                     addon="fa fa-image"
                     onChange={this.handleProfileimageChange}/>
-                {
-                    this.props.bar.photos.images !== null ? this.props.bar.photos.images.map((item, index)=>
-                        <img src={ item } width={150} alt='' className="imageList" />
-                    ):(
-                    <p> Loading... </p>
-                    )
-                }
+                <img src={ this.props.bar.photos['profile_image'] } className="barFormProfileImage"/>
+
                 <TextFieldGroup
                     field="images"
                     value=''
@@ -138,6 +132,15 @@ class BarForm extends Component {
                     type="file"
                     addon="fa fa-files-o"
                     onChange={this.handleImagesChange}/>
+
+                {
+                    this.props.bar.photos.images !== null ? this.props.bar.photos.images.map((item, index)=>
+                        <img src={ item } width={150} alt='' className="imageList" />
+                    ):(
+                        <p> Loading... </p>
+                    )
+                }
+                <br/><br/>
                 <button className="btn btn-default btn-group-lg">
                     <span className="fa fa-upload"></span> Save
                 </button>
