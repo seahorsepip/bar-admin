@@ -13,7 +13,14 @@ import 'dropzone/dist/min/dropzone.min.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import './css/style.css';
 
+//Authentication
+import { setCurrentUser } from './actions/authActions';
+
 const target = document.querySelector('#root');
+
+if (localStorage.token) {
+  store.dispatch(setCurrentUser(JSON.parse(localStorage.token)));
+}
 
 render(
   <Provider store={store}>

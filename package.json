@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "bootstrap": "^4.0.0-beta",
+    "jsonwebtoken": "^8.1.0",
     "proptypes": "^1.1.0",
     "react": "^16.1.1",
     "react-bootstrap-table": "^4.1.5",
@@ -19,7 +20,9 @@
     "react-scripts": "1.0.17",
     "reactstrap": "^5.0.0-alpha.4",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-persist": "^5.4.0",
+    "redux-thunk": "^2.2.0",
+    "validator": "^9.1.2"
   },
   "scripts": {
     "start": "react-scripts start",

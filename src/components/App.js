@@ -5,8 +5,10 @@ import { Route, Link } from 'react-router-dom'
 // Components
 import NavigationBar from './common/NavigationBar';
 import SideNavigationBar from './common/SideNavigationBar';
-import AddBarPage from './Bar/AddBarPage';
 
+//Layouts
+import MainLayout from './common/MainLayout';
+import BlankLayout from './common/BlankLayout';
 
 // Pages
 import HomePage from './HomePage';
@@ -18,37 +20,31 @@ import QuestionPage from './Quiz/Question/QuestionPage';
 import AddEventPage from "./Bar/Event/AddEventPage";
 import EditEventPage from "./Bar/Event/EditEventPage";
 import AddMusicPage from "./Music/AddMusicPage";
+import LoginPage from './Auth/LoginPage';
+import AddBarPage from './Bar/AddBarPage';
+
+// Authorization
+import requireAuth from '../utils/requireAuth';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <NavigationBar />
-        <Container fluid>
-            <main>
-              <Row>
-                <Col sm="3" md="2" xl="1" className="sidebar">
-                  <SideNavigationBar />
-                </Col>
-                <Col sm="9" md="10" xl="11" className="ml-sm-auto p-4">
-                  <Route exact path="/" component={HomePage} />
-                  <Route exact path="/quiz" component={QuizPage} />
-                  <Route exact path="/quiz/:id" component={QuestionPage} />
-                  <Route exact path="/quiz/new" component={AddQuizPage} />
-                  <Route exact path="/event/new" component={AddEventPage}/>
-                  <Route exact path="/event/edit/:eventId/" component={EditEventPage}/>
-                  <Route exact path="/quiz/edit/:id" component={AddQuizPage} />
-                  <Route exact path="/quiz/play/:id" component={"TODO"}/>
-                  <Route exact path="/music" component={MusicPage} />
-                  <Route exact path="/music/new" component={AddMusicPage}/>
-                  <Route exact path="/bar" component={BarPage} />
-                  <Route exact path="/bar/new/:id" component={AddBarPage} />
-                  <Route exact path="/bar/events/new" component={AddEventsPage} />
-                </Col>
-              </Row>
-            </main>
-        </Container>
-      </div>
+            <div>
+                <MainLayout exact path="/" component={requireAuth(HomePage)} />
+                <BlankLayout exact path="/login" component={LoginPage} />
+                <MainLayout exact path="/quiz" component={requireAuth(QuizPage)} />
+                <MainLayout exact path="/quiz/:id" component={requireAuth(QuestionPage)} />
+                <MainLayout exact path="/quiz/new" component={requireAuth(AddQuizPage)} />
+                <MainLayout exact path="/event/new" component={requireAuth(AddEventPage)}/>
+                <MainLayout exact path="/event/edit/:eventId/" component={requireAuth(EditEventPage)}/>
+                <MainLayout exact path="/quiz/edit/:id" component={requireAuth(AddQuizPage)} />
+                <MainLayout exact path="/quiz/play/:id" component={"TODO"}/>
+                <MainLayout exact path="/music" component={requireAuth(MusicPage)} />
+                <MainLayout exact path="/music/new" component={requireAuth(AddMusicPage)}/>
+                <MainLayout exact path="/bar" component={requireAuth(BarPage)} />
+                <MainLayout exact path="/bar/new/:id" component={requireAuth(AddBarPage)} />
+                <MainLayout exact path="/bar/events/new" component={requireAuth(AddEventPage)} />
+            </div>
     );
   }
 }
