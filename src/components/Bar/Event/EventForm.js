@@ -42,7 +42,7 @@ export default class EventForm extends Component {
         if (!this.state.name) console.log('what');
         event.preventDefault();
         console.log(this.props.id);
-        let url = 'http://localhost:3000/api/events';
+        let url = 'http://maatwerk.works/api/events';
         if (this.props.id) url += '/' + this.props.id;
         fetch(url, this.getSettings()).then(res => this.setState({status: res.status}));
     }

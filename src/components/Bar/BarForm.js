@@ -6,19 +6,56 @@ class BarForm extends Component {
     constructor(){
         super();
 
-        this.handleChange = this.handleChange.bind(this);
+        this.setState({
+            id: null,
+            name: null,
+            description: null,
+            address: null,
+            zipcode: null,
+            city: null,
+            profileImage: null,
+            images: null
+        });
+
+        this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleDescriptionChange = this.handleDescriptionChange(this);
+        this.handleAddressChange = this.handleAddressChange(this);
+        this.handleZipcodeChange = this.handleZipcodeChange(this);
+        this.handleCityChange = this.handleZipcodeChange(this);
+        this.handleProfileImageChange = this.handleProfileImageChange(this);
+        this.handleImagesChange = this.handleImagesChange(this);
+
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event) {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
-
-        this.setState({
-            [name]: value
-        });
+    handleNameChange(e) {
+        this.setState({name: e.target.value});
     }
+
+    handleDescriptionChange(e) {
+        this.setState({description: e.target.value});
+    }
+
+    handleAddressChange(e) {
+        this.setState({address: e.target.value});
+    }
+
+    handleZipcodeChange(e) {
+        this.setState({zipcode: e.target.value});
+    }
+
+    handleCityChange(e) {
+        this.setState({city: e.target.value});
+    }
+
+    handleProfileImageChange(e) {
+        this.setState({profileImage: e.target.value});
+    }
+
+    handleImagesChange(e) {
+        this.setState({images: e.target.value});
+    }
+
 
     handleSubmit(event) {
         //TODO Fix form handling
@@ -29,7 +66,7 @@ class BarForm extends Component {
             <form className="form-horizontal" onSubmit={this.handleSubmit}>
                 <TextFieldGroup
                     field="name"
-                    value={this.props.name}
+                    value={this.state.bar}
                     label="Name"
                     placeholder="Name"
                     addon="fa fa-header"
