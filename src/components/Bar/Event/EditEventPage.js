@@ -3,7 +3,7 @@ import {Col, Row} from 'reactstrap';
 import {Link} from 'react-router-dom'
 import EventForm from './EventForm';
 
-export default class EditEventPage extends Component {
+export class EditEventPage extends Component {
     constructor(props) {
         super(props);
 
