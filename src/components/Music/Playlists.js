@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import {Link} from "react-router-dom";
+import PropTypes from 'prop-types';
 
-class App extends Component {
+class Playlists extends Component {
     constructor() {
         super();
 
         let token = JSON.parse(localStorage.getItem('token'));
 
-        this.state = {items: [], token: token.access_token};
+        this.state = {items: [], token: token.access_token}
+
+        this.fetch();
     }
 
-    componentDidMount(){
+    fetch()
+    {
         fetch("http://music.maatwerk.works/api/playlists/")
             .then(res => {
                 console.log(res);
@@ -23,6 +27,9 @@ class App extends Component {
             .catch((error) => {
                 console.error(error);
             });
+    }
+    componentDidMount(){
+        this.fetch();
     }
 
     render() {
@@ -48,8 +55,9 @@ class App extends Component {
                                             'Content-Type': 'application/json',
                                             'Authorization': 'Bearer ' + this.state.token
                                         }
-                                    }).then(window.location.reload())
-                                     }}>
+                                    })
+                                    this.context.router.history.push("/music/Playlists");
+                                }}>
                                 <span className="glyphicon glyphicon-th-list"></span> Delete
                             </Button>
                         </div>) : <p> Loading... </p>}
@@ -60,7 +68,7 @@ class App extends Component {
                 </Link>
             </div>
         );
-  }
+   }
 }
-
-export default App;
+Playlists.contextTypes = {router:PropTypes.object.isRequired};
+export default Playlists;

@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import {Link} from "react-router-dom";
+import PropTypes from 'prop-types';
 
-class App extends Component {
+class Library extends Component {
     constructor() {
         super();
 
@@ -91,11 +92,8 @@ class App extends Component {
         ));
 
         Promise.all(tasks)
-            .then(result => {
-                console.log(result);
-                window.location.reload()
-            })
             .catch(error => alert(error));
+        this.context.router.history.push("/music/library");
     }
 
     render() {
@@ -122,6 +120,5 @@ class App extends Component {
         );
     }
 }
-
-
-export default App;
+Library.contextTypes = {router:PropTypes.object.isRequired};
+export default Library;

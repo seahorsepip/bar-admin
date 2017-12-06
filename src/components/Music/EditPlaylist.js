@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Button, Form } from 'reactstrap';
 import TextFieldGroup from '../common/TextFieldGroup';
 import {Link} from "react-router-dom";
+import PropTypes from 'prop-types';
 
-class App extends Component {
+class EditPlaylist extends Component {
     constructor(props) {
         super(props);
 
@@ -45,9 +46,8 @@ class App extends Component {
                 id: this.state.items.id,
                 name: this.state.name
             })
-        }).then(
-            window.location.href = "/music/playlists"
-        );
+        })
+        this.context.router.history.push("/music/playlists");
     }
 
     onChange(e) {
@@ -78,5 +78,5 @@ class App extends Component {
         );
     }
 }
-
-export default App;
+EditPlaylist.contextTypes = {router:PropTypes.object.isRequired};
+export default EditPlaylist;

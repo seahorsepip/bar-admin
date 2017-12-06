@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Button, Form } from 'reactstrap';
 import TextFieldGroup from '../common/TextFieldGroup';
 import {Link} from "react-router-dom";
+import PropTypes from 'prop-types';
 
-class App extends Component {
+class AddPlaylist extends Component {
     constructor(props) {
         super(props);
 
@@ -20,8 +21,6 @@ class App extends Component {
     onSubmit(e) {
         e.preventDefault();
         console.log(JSON.stringify(this.state.name));
-        console.log(this.state.token);
-        console.log('hi');
         fetch("http://music.maatwerk.works/api/playlists", {
             method: 'POST',
             headers: {
@@ -32,7 +31,7 @@ class App extends Component {
             body: JSON.stringify({name: this.state.name})
         }).then(result => {
                 console.log(result);
-                window.location.href = "/music/playlists"
+            this.context.router.history.push("/music/playlists");
 
             }
         );
@@ -64,5 +63,5 @@ class App extends Component {
         );
     }
 }
-
-export default App;
+AddPlaylist.contextTypes = {router:PropTypes.object.isRequired};
+export default AddPlaylist;
