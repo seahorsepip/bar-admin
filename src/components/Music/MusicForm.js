@@ -8,11 +8,13 @@ export default class MusicForm extends Component {
     constructor(props) {
         super(props);
 
+        let token = JSON.parse(localStorage.getItem('token'));
+
         this.state = {
             name: '',
             genre: '',
             items: [],
-            token: '45feb57ce42182121f336647b89701ced9da43aa'
+            token: token.access_token
         };
 
         this.handleChange = this.handleChange.bind(this);

@@ -10,8 +10,12 @@ class QuestionList extends Component {
         this.onAfterSaveCell = this.onAfterSaveCell.bind(this);
         this.onAfterInsertRow = this.onAfterInsertRow.bind(this);
 
+        let token = JSON.parse(localStorage.getItem('token'));
+
         this.state= {
-            items:[]};
+            items: [],
+            token: token.access_token
+        };
 
         this.options  = {
             cellEdit: this.cellEditProp,
@@ -61,6 +65,8 @@ class QuestionList extends Component {
         fetch("http://localhost:3000/api/questions/" + this.props.id, {
             method: 'POST',
             body: form,
+            headers: {'Authorization': 'Bearer ' + this.state.token}
+
         })
             .then(result => result.json())
             .then(json => {
@@ -78,7 +84,8 @@ class QuestionList extends Component {
     //Delete row from database
     onAfterDeleteRow(row) {
         fetch("http://localhost:3000/api/questions/" + row, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {'Authorization': 'Bearer ' + this.state.token}
         })
             .then((result) => result.json())
             .then((json) => console.log(json))
@@ -101,6 +108,7 @@ class QuestionList extends Component {
         fetch("http://localhost:3000/api/questions/" + row.id, {
             method: 'PUT',
             body: form,
+            headers: {'Authorization': 'Bearer ' + this.state.token}
         })
             .then((result) => result.json())
             .then((json) => console.log(json))

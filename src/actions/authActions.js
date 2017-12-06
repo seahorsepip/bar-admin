@@ -39,7 +39,8 @@ export function logIn(data){
                         username: res.username,
                         isAdmin: res.isAdmin,
                         email: res.email,
-                        id: res.id
+                        id: res.id,
+                        barId: res.barId
                     };
                     localStorage.setItem('token', JSON.stringify(userDetails));
                     dispatch(setCurrentUser(userDetails));

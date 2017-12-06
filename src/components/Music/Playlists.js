@@ -5,7 +5,10 @@ import {Link} from "react-router-dom";
 class App extends Component {
     constructor() {
         super();
-        this.state={items:[]};
+
+        let token = JSON.parse(localStorage.getItem('token'));
+
+        this.state = {items: [], token: token.access_token};
     }
 
     componentDidMount(){
@@ -43,6 +46,7 @@ class App extends Component {
                                         headers: {
                                             'Accept': 'application/json',
                                             'Content-Type': 'application/json',
+                                            'Authorization': 'Bearer ' + this.state.token
                                         }
                                     }).then(window.location.reload())
                                      }}>

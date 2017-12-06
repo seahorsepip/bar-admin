@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.get('http://localhost:3000/api/bars')
+axios.get('http://maatwerk.works/api/bars')
     .then(function (response) {
         console.log(response);
         return response;

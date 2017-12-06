@@ -15,13 +15,15 @@ export default class EventForm extends Component {
 
         let currentDateTime = new Date().toISOString();
         currentDateTime = currentDateTime.substring(0, currentDateTime.length - 1);
+        let token = JSON.parse(localStorage.getItem('token'));
+
         this.state = {
             name: this.props.name,
             description: this.props.description,
             start: this.props.start ? this.getCompatibleDate(this.props.start) : currentDateTime,
             end: this.props.end ? this.getCompatibleDate(this.props.end) : currentDateTime,
             status: '',
-            token: '45feb57ce42182121f336647b89701ced9da43aa'
+            token: token.access_token
         }; //when there is a login of sorts, it can prolly rerouted to a local session. or simply keep using tokens
         //no shits were given that day!
 

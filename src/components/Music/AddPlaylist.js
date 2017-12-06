@@ -6,8 +6,12 @@ import {Link} from "react-router-dom";
 class App extends Component {
     constructor(props) {
         super(props);
+
+        let token = JSON.parse(localStorage.getItem('token'));
+
         this.state = {
-            name: ''
+            name: '',
+            token: token.access_token
         };
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -16,15 +20,21 @@ class App extends Component {
     onSubmit(e) {
         e.preventDefault();
         console.log(JSON.stringify(this.state.name));
+        console.log(this.state.token);
+        console.log('hi');
         fetch("http://music.maatwerk.works/api/playlists", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + this.state.token
             },
             body: JSON.stringify({name: this.state.name})
-        }).then(
-            window.location.href = "/music/playlists"
+        }).then(result => {
+                console.log(result);
+                window.location.href = "/music/playlists"
+
+            }
         );
     }
 

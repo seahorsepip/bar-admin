@@ -6,10 +6,15 @@ import {Link} from "react-router-dom";
 class App extends Component {
     constructor() {
         super();
+
+        let token = JSON.parse(localStorage.getItem('token'));
+
         this.state={
             items:[],
-            toRemove:[]
-        }
+            toRemove: [],
+            token: token.access_token
+        };
+
         this.onAfterSaveCell = this.onAfterSaveCell.bind(this);
         this.onRowSelect = this.onRowSelect.bind(this);
         this.onRemove = this.onRemove.bind(this);
@@ -52,6 +57,7 @@ class App extends Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + this.state.token
             },
             body: JSON.stringify(row)
         })
@@ -79,34 +85,17 @@ class App extends Component {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + this.state.token
                 }
             })
         ));
 
         Promise.all(tasks)
-            .then(() => window.location.reload())
+            .then(result => {
+                console.log(result);
+                window.location.reload()
+            })
             .catch(error => alert(error));
-    }
-
-    onRemove(e) {
-        e.preventDefault();
-        let tasks = [];
-
-        console.log(this.state.toRemove);
-        this.state.toRemove.forEach(id => {
-            tasks.push(
-                fetch("http://music.maatwerk.works/api/songs/" + id, {
-                    method: 'DELETE',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                    }
-                })
-            )
-            Promise.all(tasks)
-                .then(() => window.location.reload())
-                .catch(error => alert(error));
-        });
     }
 
     render() {

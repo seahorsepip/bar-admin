@@ -15,7 +15,7 @@ export default function(ComposedComponent) {
                 this.props.addFlashMessage({
                     type: 'danger',
                     text: 'You need to login to access this page'
-                })
+                });
                 this.context.router.history.push('/login');
             }
         }

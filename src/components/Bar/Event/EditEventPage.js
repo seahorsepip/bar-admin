@@ -13,13 +13,10 @@ export default class EditEventPage extends Component {
             description: '',
             start: false,
             end: false,
-            token: '45feb57ce42182121f336647b89701ced9da43aa'
-
         }
     }
 
     componentWillMount() {
-        console.log('what');
         fetch('http://maatwerk.works/api/events' + this.state.id)
             .then(event => event.json())
             .then(event => this.setState(event));

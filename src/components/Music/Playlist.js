@@ -7,11 +7,15 @@ import {Link} from "react-router-dom";
 class App extends Component {
     constructor() {
         super();
+
+        let token = JSON.parse(localStorage.getItem('token'));
+
         this.state = {
             playlist: [],
             toAdd: [],
             toRemove: [],
-            library: []
+            library: [],
+            token: token.access_token
         };
         this.onAdd = this.onAdd.bind(this);
         this.onRemove = this.onRemove.bind(this);
@@ -95,6 +99,7 @@ class App extends Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + this.state.token
             },
             body: JSON.stringify(this.state.toAdd)
         })
@@ -113,6 +118,7 @@ class App extends Component {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + this.state.token
                 }
             })
         ));

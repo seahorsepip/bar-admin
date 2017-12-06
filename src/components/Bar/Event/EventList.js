@@ -8,7 +8,10 @@ import {Link} from 'react-router-dom';
 export default class EventList extends Component {
     constructor() {
         super();
-        this.state = {events: []};
+
+        let userDetails = JSON.parse(localStorage.getItem('token'));
+
+        this.state = {events: [], userDetails};
 
     }
 
@@ -17,7 +20,9 @@ export default class EventList extends Component {
     }
 
     getEvents() {
-        fetch('http://maatwerk.works/api/events')
+        console.log(this.state.userDetails);
+        console.log(this.state);
+        fetch('http://maatwerk.works/api/events?barId=' + this.state.userDetails.barId)
             .then(events => events.json())
             .then(events => this.setState({events}));
     }
@@ -30,7 +35,7 @@ export default class EventList extends Component {
 
     getHeaders() {
         const header = new Headers();
-        header.append('authorization', 'Bearer ' + '45feb57ce42182121f336647b89701ced9da43aa');
+        header.append('authorization', 'Bearer ' + this.state.userDetails.access_token);
         return header;
     }
 

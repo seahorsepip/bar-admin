@@ -29,21 +29,24 @@ class BarPage extends Component {
         if (barList)
         return (
             <div>
-                <h1>Bar Management</h1>
-                <Row>
-                    {
-                        barList !== null ? barList.map((item, index)=>
-                        <BarCard key={ index } id={ item.id } name={ item.name } image={ item.photos['profile_image'] } />
-                        ):(
-                        <p> Loading... </p>
-                        )
-                    }
-                </Row>
-                <hr/>
-                <Link to="/bar/new" className="btn btn-dark ml-3 d-inline-block">
-                    <span className="glyphicon glyphicon-th-list"></span> Add new bar
-                </Link>
+                <div>
+                    <h1>Bar Management</h1>
+                    <Row>
+                        {
+                            barList !== null ? barList.map((item, index)=>
+                                <BarCard key={ index } id={ item.id } name={ item.name } image={ item.photos['profile_image'] } />
+                            ):(
+                                <p> Loading... </p>
+                            )
+                        }
+                    </Row>
+                    <hr/>
+                    <Link to="/bar/new" className="btn btn-dark ml-3 d-inline-block">
+                        <span className="glyphicon glyphicon-th-list"></span> Add new bar
+                    </Link>
+                </div>
             </div>
+
         );
         return <p> Loading... </p>
     }

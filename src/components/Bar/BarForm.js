@@ -19,7 +19,7 @@ class BarForm extends Component {
 
         this.handleNameChange = this.handleNameChange.bind(this);
         /*this.handleDescriptionChange = this.handleDescriptionChange(this);
-        /*this.handleAddressChange = this.handleAddressChange(this);
+        this.handleAddressChange = this.handleAddressChange(this);
         this.handleZipcodeChange = this.handleZipcodeChange(this);
         this.handleCityChange = this.handleZipcodeChange(this);
         this.handleProfileImageChange = this.handleProfileImageChange(this);

@@ -8,6 +8,8 @@ class QuizForm extends Component {
     constructor(props){
         super(props);
 
+        let token = JSON.parse(localStorage.getItem('token'));
+
         this.state = {
             title: '',
             description: '',
@@ -15,7 +17,9 @@ class QuizForm extends Component {
             image: null,
             token: '',
             id: props.id,
-            file: null};
+            file: null,
+            token: token.access_token
+        };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -44,7 +48,8 @@ class QuizForm extends Component {
         if(this.state.id === undefined){
             fetch('http://localhost:3000/api/quizzes/', {
                 method: 'POST',
-                body: form
+                body: form,
+                headers: {'Authorization': 'Bearer ' + this.state.token}
             })
                 .then((result) => result.json())
                 .then((json) => console.log(json))
@@ -54,7 +59,8 @@ class QuizForm extends Component {
             form.append('quizId', this.state.id)
             fetch('http://localhost:3000/api/quizzes/' + this.state.id, {
                 method: 'PUT',
-                body: form
+                body: form,
+                headers: {'Authorization': 'Bearer ' + this.state.token}
             })
                 .then((result) => result.json())
                 .then((json) => console.log(json))

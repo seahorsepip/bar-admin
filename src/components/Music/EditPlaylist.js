@@ -6,9 +6,13 @@ import {Link} from "react-router-dom";
 class App extends Component {
     constructor(props) {
         super(props);
+
+        let token = JSON.parse(localStorage.getItem('token'));
+
         this.state = {
             items:[],
-            name: ''
+            name: '',
+            token: token.access_token
         };
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -35,6 +39,7 @@ class App extends Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + this.state.token
             },
             body: JSON.stringify({
                 id: this.state.items.id,
