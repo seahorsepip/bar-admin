@@ -7,8 +7,6 @@ import NavigationBar from './common/NavigationBar';
 import SideNavigationBar from './common/SideNavigationBar';
 
 
-import EditBarPage from './Bar/EditBarPage';
-
 //Layouts
 import MainLayout from './common/MainLayout';
 import BlankLayout from './common/BlankLayout';
@@ -21,20 +19,23 @@ import HomePage from './HomePage';
 import BarPage from './Bar/BarPage';
 import AddEventPage from "./Bar/Event/AddEventPage";
 import EditEventPage from "./Bar/Event/EditEventPage";
+import EditBarPage from './Bar/EditBarPage';
 
 //Music
 import MusicPage from './Music/MusicPage';
 import AddMusicPage from "./Music/AddMusicPage";
-
-import LoginPage from './Auth/LoginPage';
-
-// Authorization
-import requireAuth from '../utils/requireAuth';
 import Playlists from "./Music/Playlists";
 import Playlist from "./Music/Playlist";
 import Library from "./Music/Library";
 import AddPlaylist from "./Music/AddPlaylist";
 import EditPlaylist from "./Music/EditPlaylist";
+
+
+
+
+// Authorization
+import requireAuth from '../utils/requireAuth';
+import LoginPage from './Auth/LoginPage';
 
 //Quiz
 import QuizPage from './Quiz/QuizPage';
@@ -57,8 +58,16 @@ class App extends Component {
 			<MainLayout exact path="/event/edit/:eventId/" component={requireAuth(EditEventPage)}/>
 			<MainLayout exact path="/music" component={requireAuth(MusicPage)} />
 			<MainLayout exact path="/music/new" component={requireAuth(AddMusicPage)}/>
+			<MainLayout exact path="/music/playlists" component={requireAuth(Playlists)}/>
+			<MainLayout exact path="/music/library" component={requireAuth(Library)}/>
+			<MainLayout exact path="/music/playlist/:id" component={requireAuth(Playlist)}/>
+			<MainLayout exact path="/music/addplaylist" component={requireAuth(AddPlaylist)}/>
+			<MainLayout exact path="/music/editplaylist/:id" component={requireAuth(EditPlaylist)}/>
 			<MainLayout exact path="/bar" component={requireAuth(BarPage)} />
-			<MainLayout exact path="/bar/events/new" component={requireAuth(AddEventPage)} />
+			<MainLayout exact path="/bar/new/:id" component={requireAuth(EditBarPage)} />
+			<MainLayout exact path="/bar/new/:id/:method" component={requireAuth(EditBarPage)} />
+			<MainLayout exact path="/event/new" component={requireAuth(AddEventPage)} />
+			<MainLayout exact path="/event/edit/:eventId" component={requireAuth(EditEventPage)} />
 		</div>
 
     );
