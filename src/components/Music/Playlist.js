@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import {Button} from 'reactstrap';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import {Link} from "react-router-dom";
+import PropTypes from 'prop-types';
 
 
-class App extends Component {
+class Playlist extends Component {
     constructor() {
         super();
         this.state = {
@@ -160,5 +161,5 @@ class App extends Component {
         );
     }
 }
-
-export default App;
+Playlist.contextTypes = {router:PropTypes.object.isRequired};
+export default Playlist;
