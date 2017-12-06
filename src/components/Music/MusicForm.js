@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import TextFieldGroup from '../common/TextFieldGroup';
-import Dropzone from "./Dropzone";
+import Dropzone from "../common/Dropzone";
 
 export default class MusicForm extends Component {
     myDropzone = {};
@@ -105,7 +105,7 @@ export default class MusicForm extends Component {
                     label="Token"
                     addon="fa fa-image"
                     onChange={this.handleChange}/>
-                <Dropzone addedFile={this.addedFile.bind(this)} removedFile={this.removedFile.bind(this)}
+                <Dropzone options ={['.mp3', '.mp4', '.flac']} acceptedFiles={'audio/mp3,video/mp4,audio/flac'} addedFile={this.addedFile.bind(this)} removedFile={this.removedFile.bind(this)}
                           init={this.initDropzone.bind(this)}/>
                 <button className="btn btn-dark ml-3 d-inline-block">
                     <span className="fa fa-upload"/> upload

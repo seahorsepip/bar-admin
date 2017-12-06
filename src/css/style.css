@@ -54,3 +54,12 @@ a {
 .dz-progress {
     display: none !important;
 }
+
+.login-card {
+    width: 360px;
+    margin: 200px auto;
+}
+
+.invalid-feedback{
+    display: block;
+}

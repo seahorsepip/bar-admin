@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, NavLink,
             UncontrolledDropdown, DropdownMenu, DropdownToggle, DropdownItem } from 'reactstrap';
-import {Link} from "react-router-dom";
+import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { logout } from '../../actions/authActions';
 
 class NavigationBar extends Component {
     constructor(props) {
@@ -18,20 +21,27 @@ class NavigationBar extends Component {
         });
     }
 
+    logout(e) {
+      e.preventDefault();
+      this.props.logout();
+      this.context.router.history.push('/login');
+
+    }
+
     render() {
         const userLinks = (
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <UncontrolledDropdown>
                 <DropdownToggle caret color="info">
-                  Bob van Donselaar
+                  {this.props.auth.user.username}
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-menu-right">
-                  <DropdownItem onClick={console.log('settings-page')}>
+                  <DropdownItem>
                     Settings
                   </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem onClick={console.log('logout')}>Sign Out</DropdownItem>
+                  <DropdownItem onClick={this.logout.bind(this)}>Sign Out</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
               </NavItem>
@@ -50,4 +60,19 @@ class NavigationBar extends Component {
     }
 }
 
-export default NavigationBar;
+NavigationBar.propTypes = {
+  auth: PropTypes.object.isRequired,
+  logout: PropTypes.func.isRequired
+}
+
+NavigationBar.contextTypes = {
+  router: PropTypes.object.isRequired
+}
+
+function mapStateToProps(state){
+  return {
+    auth: state.auth
+  };
+}
+
+export default connect(mapStateToProps, {logout} )(NavigationBar);

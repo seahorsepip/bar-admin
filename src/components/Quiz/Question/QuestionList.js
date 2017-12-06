@@ -28,9 +28,6 @@ class QuestionList extends Component {
         this.selectRowProp = {
             mode: 'checkbox'
         };
-
-
-
     }
 
     //Get initial data
@@ -68,10 +65,10 @@ class QuestionList extends Component {
             .then(result => result.json())
             .then(json => {
                 console.log(json)
-                this.state.items.map(question => {
+                /*this.state.items.map(question => {
                     if(question.id === row.id) question.id = json.id;
                 });
-                this.setState(this.state);
+                this.setState(this.state);*/
             })
             .catch((error) => console.log(error));
 
